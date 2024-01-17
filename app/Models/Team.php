@@ -16,4 +16,13 @@ class Team extends Model
     {
         return $this->belongsToMany(Group::class, 'team_group')->withTimestamps();
     }
+    public function games1()
+    {
+        return $this->hasMany(Game::class, 'team1_id');
+    }
+
+    public function games2()
+    {
+        return $this->hasMany(Game::class, 'team2_id');
+    }
 }
