@@ -19,29 +19,25 @@
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
         <!---------------------------Barra de Opciones------------------------->
-        @if (Route::has('login'))
-        <div class="sm:fixed sm:top-0 sm:center-0 text-center z-10 bg-white w-full p-4">
-            @auth
-            <a href="{{ url('/dashboard') }}"
-                class="font-semibold text-gray-600 hover:text-red-900 focus:outline  ">Dashboard</a>
-            @else
-            <a href="#reglamentario"
-                class="p-6 font-semibold text-gray-600 hover:text-red-900   ">REGLAMENTARIO</a>
-            <a href="#ubicacion"
-                class="p-6 font-semibold text-gray-600 hover:text-red-900   ">UBICANOS</a>
-                <a href="{{ url('/descargar1-pdf') }}"
-                class="p-6 font-semibold text-gray-600 hover:text-red-900   ">PLANTILLA DE INSCRIPCIÓN</a>
-            <a href="{{ route('login') }}"
-                class="p-6 font-semibold text-gray-600 hover:text-red-900   ">INICIAR
-                SESIÓN</a>
 
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}"
-                class="ml-4 font-semibold text-gray-600 hover:text-red-900   ">REGISTRARSE</a>
-            @endif
-            @endauth
+        <div class="sm:fixed sm:top-0 sm:center-0 text-center z-10 bg-white w-full p-4">
+            <!-- login -->
+            <div class="flex justify-end">
+                <a href="{{ url('/espe') }}"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 ">
+                    Iniciar Sesión
+                </a>
+                <!-- opcione de: reglamento, ubicacion, contacto -->
+                    <a href="#reglamentario"
+                        class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 ">
+                        Reglamento
+                    </a>
+                    <a href="#ubicacion"
+                        class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 ">
+                        Ubicación
+                    </a>
+            </div>
         </div>
-        @endif
 
         <div class="mt-16 max-w-7xl mx-auto p-6 lg:p-8">
             <!-- Imagen -->
