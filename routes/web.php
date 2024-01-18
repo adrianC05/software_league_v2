@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/descargar-pdf', function () {
+    $archivoPdf = public_path('descargas/protocolo_software_league.pdf');
+    return response()->download($archivoPdf, 'Protocolo_software_league.pdf');
+});
+Route::get('/descargar1-pdf', function () {
+    $archivoPdf = public_path('descargas/Plantillas.pdf');
+    return response()->download($archivoPdf, 'Plantilla de incripción.pdf');
+});
