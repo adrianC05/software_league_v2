@@ -30,19 +30,19 @@ class PlayersResource extends Resource
                 ->required(),
             Forms\Components\Select::make('Lastname')
                 ->required(),
-            Forms\Components\DatePicker::make('ID')
+            Forms\Components\DatePicker::make('Cedula')
                ->required(),
             Forms\Components\TextInput::make('Cellphone')
                 ->required(),
             Forms\Components\TextInput::make('Sex')
                 ->required(),
-            Forms\Components\TextInput::make('Semester')
+            Forms\Components\TextInput::make('Semestre')
             ->required(),
-            Forms\Components\Select::make('teams_id')
-                ->relationship('team', 'name')
-                ->required()
-                ->preload()
-                ->placeholder('Seleccione una equipo'),
+            //Forms\Components\Select::make('teams_id')
+              //  ->relationship('team', 'name')
+              //  ->required()
+              //  ->preload()
+              //  ->placeholder('Seleccione una equipo'),
         ]);
     }
 
