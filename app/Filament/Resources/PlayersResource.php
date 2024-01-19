@@ -26,18 +26,22 @@ class PlayersResource extends Resource
     {
         return $form
         ->schema([
-            Forms\Components\Select::make('Name')
+            Forms\Components\TextInput::make('Name')
                 ->required(),
-            Forms\Components\Select::make('Lastname')
+            Forms\Components\TextInput::make('Lastname')
                 ->required(),
-            Forms\Components\DatePicker::make('Cedula')
+            Forms\Components\TextInput::make('Cedula')
                ->required(),
             Forms\Components\TextInput::make('Cellphone')
                 ->required(),
-            Forms\Components\TextInput::make('Sex')
+            Forms\Components\Select::make('Sex')
+                ->options([
+                    'M' => 'Masculino',
+                    'F' => 'Femenino',
+                ])
                 ->required(),
             Forms\Components\TextInput::make('Semestre')
-            ->required(),
+                ->required(),
             //Forms\Components\Select::make('teams_id')
               //  ->relationship('team', 'name')
               //  ->required()
