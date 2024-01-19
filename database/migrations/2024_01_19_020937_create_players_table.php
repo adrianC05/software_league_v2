@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('Name')->nullable();
             $table->time('Lastname')->nullable();
-            $table->date('ID')->nullable();
+            $table->date('ID_C')->nullable();
             $table->time('Cellphone')->nullable();
             $table->date('Sex')->nullable();
             $table->time('Semester')->nullable();
