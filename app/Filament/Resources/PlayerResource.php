@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TeamResource\Pages;
-use App\Filament\Resources\TeamResource\RelationManagers;
-use App\Models\Team;
+use App\Filament\Resources\PlayerResource\Pages;
+use App\Filament\Resources\PlayerResource\RelationManagers;
+use App\Models\Player;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,29 +13,40 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TeamResource extends Resource
+class PlayerResource extends Resource
 {
-    protected static ?string $model = Team::class;
+    protected static ?string $model = Player::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Estadísticas';
-    protected static ?string $navigationLabel = 'Equipos';
-    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationLabel = 'Jugadores';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('team_id')
+                    ->relationship('team', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Seleccione el equipo sancionado'),
                 Forms\Components\TextInput::make('name')
-                    ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('goodmother')
+                Forms\Components\TextInput::make('lastname')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('enrollment')
+                Forms\Components\TextInput::make('cedula')
                     ->numeric(),
-                Forms\Components\Toggle::make('status'),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\TextInput::make('cellphone')
+                    ->tel()
+                    ->numeric(),
+                Forms\Components\Select::make('sex')
+                    ->options([
+                        'Masculino' => 'Masculino',
+                        'Femenino' => 'Femenino',
+                    ]),
+                Forms\Components\TextInput::make('semester')
                     ->maxLength(255),
             ]);
     }
@@ -44,19 +55,22 @@ class TeamResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('goodmother')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('enrollment')
+                Tables\Columns\TextColumn::make('team.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('description')
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                // Group
-                Tables\Columns\TextColumn::make('groups.name')
+                Tables\Columns\TextColumn::make('lastname')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('cedula')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('cellphone')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('sex')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('semester')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -90,9 +104,9 @@ class TeamResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeams::route('/'),
-            //'create' => Pages\CreateTeam::route('/create'),
-            //'edit' => Pages\EditTeam::route('/{record}/edit'),
+            'index' => Pages\ListPlayers::route('/'),
+            //'create' => Pages\CreatePlayer::route('/create'),
+            //'edit' => Pages\EditPlayer::route('/{record}/edit'),
         ];
     }
 }

@@ -25,4 +25,23 @@ class Team extends Model
     {
         return $this->hasMany(Game::class, 'team2_id');
     }
+
+    // A team can have many team_sanctions
+
+    public function teamSanctions()
+    {
+        return $this->hasMany(TeamSanction::class);
+    }
+
+    // A team has many results(League Table)
+    public function leagueTables()
+    {
+        return $this->hasMany(LeagueTable::class);
+    }
+
+    // A team has many players
+    public function players()
+    {
+        return $this->hasMany(Player::class);
+    }
 }
