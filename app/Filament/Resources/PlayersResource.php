@@ -30,7 +30,7 @@ class PlayersResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('Lastname')
                 ->required(),
-            Forms\Components\TextInput::make('ID_C')
+            Forms\Components\TextInput::make('Cedula')
                ->required(),
             Forms\Components\TextInput::make('Cellphone')
                 ->required(),
@@ -42,11 +42,11 @@ class PlayersResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('Semester')
                 ->required(),
-            //Forms\Components\Select::make('teams_id')
-              //  ->relationship('team', 'name')
-              //  ->required()
-              //  ->preload()
-              //  ->placeholder('Seleccione una equipo'),
+            Forms\Components\Select::make('teams_id')
+                ->relationship('team', 'name')
+                ->required()
+                ->preload()
+                ->placeholder('Seleccione una equipo'),
         ]);
     }
 
