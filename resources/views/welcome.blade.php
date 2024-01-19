@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,17 +11,19 @@
     <!-- Styles -->
     @vite('resources/css/app.css')
 </head>
+
 <body class="antialiased">
-<div class= "[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
-    <div
+    <div class="[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]" <div
         class="absolute inset-0 -z-10 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
         <!---------------------------Barra de Opciones------------------------->
         <div class="sm:static sm:top-0 sm:center-0 text-center z-10 w-full p-1">
             <!-- login -->
+            <!-- Imagen -->
+
             <div class="flex justify-end flex justify-center items-center">
+
                 <a href="{{ url('/espe') }}" class="p-6 font-semibold text-white  hover:text-red-900">
-                    Iniciar Sesión
-                </a>
+                    Iniciar Sesión </a>
                 <!-- opcione de: reglamento, ubicacion, contacto -->
                 <a href="#reglamentario" class="p-6 font-semibold text-white  hover:text-red-900">
                     Reglamento
@@ -102,7 +105,7 @@
                             <!------------------------------------------------------------------------------------------------------>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                                 <!-- Columna 1 -->
-                                <div class="py-5 " >
+                                <div class="py-5 ">
                                     <details class="group">
                                         <summary
                                             class="flex justify-between items-center font-medium cursor-pointer list-none">
@@ -529,8 +532,7 @@
         <div id="ubicacion" class="mt-16">
             <h2 class="flex justify-center items-center text-2xl font-semibold text-white mb-1">UBICACIÓN DEL
                 TORNEO</h2>
-            <div
-                class="flex justify-center items-center ">
+            <div class="flex justify-center items-center ">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15956.852510484774!2d-78.59382011279547!3d-0.9979606293446636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d4639e7c398d3f%3A0xc4999bdc40abfc48!2sUniversidad%20De%20Las%20Fuerzas%20Armadas%20ESPE%20Extensi%C3%B3n%20Belisario%20Quevedo!5e0!3m2!1ses!2sec!4v1705287758847!5m2!1ses!2sec"
                     width="1100" height="450" style="border:0;" allowfullscreen="" loading="lazy"
