@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TeamResource\Pages;
-use App\Filament\Resources\TeamResource\RelationManagers;
-use App\Models\Team;
+use App\Filament\Resources\TypeSanctionResource\Pages;
+use App\Filament\Resources\TypeSanctionResource\RelationManagers;
+use App\Models\TypeSanction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,28 +13,26 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TeamResource extends Resource
+class TypeSanctionResource extends Resource
 {
-    protected static ?string $model = Team::class;
+    protected static ?string $model = TypeSanction::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Estadísticas';
-    protected static ?string $navigationLabel = 'Equipos';
-    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationLabel = 'Tipos de sanciones';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('goodmother')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('enrollment')
+                Forms\Components\TextInput::make('suspended_games')
                     ->numeric(),
-                Forms\Components\Toggle::make('status'),
+                Forms\Components\TextInput::make('money_to_pay')
+                    ->numeric(),
                 Forms\Components\TextInput::make('description')
                     ->maxLength(255),
             ]);
@@ -46,17 +44,13 @@ class TeamResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('goodmother')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('enrollment')
+                Tables\Columns\TextColumn::make('suspended_games')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('money_to_pay')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('description')
-                    ->searchable(),
-                // Group
-                Tables\Columns\TextColumn::make('groups.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -90,9 +84,9 @@ class TeamResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeams::route('/'),
-            //'create' => Pages\CreateTeam::route('/create'),
-            //'edit' => Pages\EditTeam::route('/{record}/edit'),
+            'index' => Pages\ListTypeSanctions::route('/'),
+            'create' => Pages\CreateTypeSanction::route('/create'),
+            'edit' => Pages\EditTypeSanction::route('/{record}/edit'),
         ];
     }
 }
