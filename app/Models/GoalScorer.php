@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Players extends Model
+class GoalScorer extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
-    public function team()
+    // A player has many goal scorers
+    public function player()
     {
-        return $this->belongsTo(Team::class, 'team1_id');
+        return $this->belongsTo(Player::class);
     }
-
 }

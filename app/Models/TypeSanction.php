@@ -17,4 +17,10 @@ class TypeSanction extends Model
     {
         return $this->hasMany(TeamSanction::class);
     }
+
+    // One type of "sanction type" has many "sanctioned players".
+    public function playerSanctions()
+    {
+        return $this->hasMany(PlayerSanction::class);
+    }
 }

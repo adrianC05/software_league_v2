@@ -5,22 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TeamSanction extends Model
+class PlayerSanction extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    // One "type of sanction" can have many "sanctioned teams".
+    // One type of "sanction type" has many "sanctioned players".
 
     public function typeSanction()
     {
         return $this->belongsTo(TypeSanction::class);
     }
 
-    // A team can have many team_sanctions
-    public function team()
+    // A player can have many sanctions
+    public function player()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Player::class);
     }
 }

@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->string('Name')->nullable();
-            $table->string('Lastname')->nullable();
-            $table->bigInteger('Cedula')->nullable();
-            $table->bigInteger('Cellphone')->nullable();
-            $table->string('Sex')->nullable();
-            $table->string('Semester')->nullable();
-            $table->foreignId('teams_id')->constrained('teams');
+
+            $table->string('name')->nullable();
+            $table->string('lastname')->nullable();
+            $table->bigInteger('cedula')->nullable();
+            $table->bigInteger('cellphone')->nullable();
+            $table->string('sex')->nullable();
+            $table->string('semester')->nullable();
+            $table->foreignId('team_id')->constrained('teams');
             $table->timestamps();
         });
     }

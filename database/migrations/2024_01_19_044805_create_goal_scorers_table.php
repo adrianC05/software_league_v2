@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sanction_teams', function (Blueprint $table) {
+        Schema::create('goal_scorers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('player_id')->constrained('players')->onDelete('cascade');
+            $table->integer('goals')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sanction_teams');
+        Schema::dropIfExists('goal_scorers');
     }
 };
