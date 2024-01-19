@@ -30,7 +30,7 @@ class PlayersResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('Lastname')
                 ->required(),
-            Forms\Components\TextInput::make('Cedula')
+            Forms\Components\TextInput::make('ID_C')
                ->required(),
             Forms\Components\TextInput::make('Cellphone')
                 ->required(),
@@ -40,7 +40,7 @@ class PlayersResource extends Resource
                     'F' => 'Femenino',
                 ])
                 ->required(),
-            Forms\Components\TextInput::make('Semestre')
+            Forms\Components\TextInput::make('Semester')
                 ->required(),
             //Forms\Components\Select::make('teams_id')
               //  ->relationship('team', 'name')

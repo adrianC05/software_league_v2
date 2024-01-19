@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('Name')->nullable();
             $table->string('Lastname')->nullable();
             $table->decimal('ID_C',5 - 2)->nullable();
-            $table->numeric('Cellphone')->nullable();
-            $table->select('Sex')->nullable();
+            $table->decimal('Cellphone', 5 - 2)->nullable();
+            $table->string('Sex')->nullable();
             $table->string('Semester')->nullable();
             $table->foreignId('teams_id')->constrained('teams');
         });
