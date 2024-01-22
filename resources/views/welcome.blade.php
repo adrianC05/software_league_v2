@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Software League</title>
+    <link rel="icon" href="Imagenes/icono.png" type="image/png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -13,30 +14,38 @@
 </head>
 
 <body class="antialiased">
+
     <div class="[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]" <div
-        class="absolute inset-0 -z-10 h-full w-full items-center px-5 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
+        class="absolute inset-0 z-10 h-full w-full items-center px-5">
+
         <!---------------------------Barra de Opciones------------------------->
-        <div class="sm:static sm:top-0 sm:center-0 text-center z-10 w-full p-1">
-            <!-- login -->
-            <!-- Imagen -->
-
-            <div class="flex justify-end flex justify-center items-center">
-
-                <a href="{{ url('/espe') }}" class="p-6 font-semibold text-white  hover:text-red-900">
-                    Iniciar Sesión </a>
-                <!-- opcione de: reglamento, ubicacion, contacto -->
-                <a href="#reglamentario" class="p-6 font-semibold text-white  hover:text-red-900">
-                    Reglamento
-                </a>
-                <a href="#ubicacion" class="p-6 font-semibold text-white hover:text-red-900">
-                    Ubicación
-                </a>
-                <a href="{{ url('/descargar1-pdf') }}" class="p-6 font-semibold text-white hover:text-red-900">Plantilla
-                    de Inscripcion</a>
+        <div class="z-10  text-center  w-full p-1 flex justify-center items-center">
+            <div class="flex items-center ">
+                <!-- Logo -->
+                <div class=" flex-shrink-0">
+                    <img src="{{ asset('Imagenes/logo1.jpg') }}" alt="Descripción"
+                        class="rounded-md p-6 font-semibold text-white hover:text-red-900">
+                </div>
+                <!-- Opciones de menú -->
+                <div class="flex justify-end items-center space-x-10
+                ">
+                    <a href="{{ url('/espe') }}" class="p-6 font-semibold text-white hover:text-red-900">
+                        Iniciar Sesión
+                    </a>
+                    <a href="#reglamentario" class="p-6 pr-12 font-semibold text-white hover:text-red-900">
+                        Reglamento
+                    </a>
+                    <a href="#ubicacion" class="p-6 pl-12 font-semibold text-white hover:text-red-900">
+                        Ubicación
+                    </a>
+                    <a href="{{ url('/descargar1-pdf') }}" class="p-6 font-semibold text-white hover:text-red-900">
+                        Plantilla de Inscripcion
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="mt-3 max-w-7xl mx-auto p-6 lg:p-8 ">
+        <div class=" max-w-7xl mx-auto p-6  ">
             <!-- Imagen -->
             <div class="p-6 flex justify-center items-center">
                 <img src="{{ asset('Imagenes/intro.jpeg') }}" alt="Descripción" class="rounded-md">
@@ -540,8 +549,8 @@
             </div>
         </div>
         <!-------------------------------------FOOTER----------------------------------------->
-        <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
-            <div class="text-center text-sm text-gray-500 sm:text-left">
+        <div class="flex justify-center mt-16 px-0 sm:items-center ">
+            <div class="text-center text-sm text-gray-500 ">
                 <div class="flex items-center gap-4">
                     <a href="https://github.com/sponsors/taylorotwell"
                         class="group inline-flex items-center hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
