@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ExpenseResource\Pages;
 use App\Filament\Resources\ExpenseResource\RelationManagers;
+use App\Filament\Resources\ExpenseResource\Widgets\ExpenseCount;
 use App\Models\Expense;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -73,6 +74,14 @@ class ExpenseResource extends Resource
     {
         return [
             //
+        ];
+    }
+
+    // Width of the resource's detail view.
+    public static function getWidgets(): array
+    {
+        return [
+            ExpenseCount::class,
         ];
     }
 
