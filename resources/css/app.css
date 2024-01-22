@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-sl {
+    background-image: url('/public/Imagenes/intro1.jpeg');
+}
