@@ -12,16 +12,17 @@ class ExpenseOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
+
             Stat::make('Total de Gastos', Expense::sum('value'))
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
-                // Chart segun los gastos
-                ->chart(Expense::get()->pluck('value')->toArray())
-                ->color('danger'),
+                ->color('danger')
+                ->chart(Expense::get()->pluck('value')->toArray()),
+
             Stat::make('Total de Ingresos', Revenue::sum('value'))
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
-                // Chart segun los ingresos
-                ->chart(Revenue::get()->pluck('value')->toArray())
-                ->color('success'),
+                ->color('success')
+                ->chart(Revenue::get()->pluck('value')->toArray()),
+
             // Gastos - Ingresos
             Stat::make('Balance',  Revenue::sum('value') - Expense::sum('value')),
         ];

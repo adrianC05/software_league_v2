@@ -43,10 +43,16 @@ class GameResource extends Resource
                     ->required()
                     ->preload()
                     ->placeholder('Seleccione una equipo'),
-                   Forms\Components\DatePicker::make('date')
-                   ->required(),
-                Forms\Components\TextInput::make('time')
-                ->required(),
+                Forms\Components\DatePicker::make('date')
+                    ->required(),
+                Forms\Components\TimePicker::make('time')
+                    ->required(),
+                // team1_goals
+                Forms\Components\TextInput::make('team1_goals')
+                    ->numeric(),
+                // team2_goals
+                Forms\Components\TextInput::make('team2_goals')
+                    ->numeric(),
             ]);
     }
 
@@ -67,6 +73,10 @@ class GameResource extends Resource
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('time'),
+                Tables\Columns\TextInputColumn::make('team1_goals')
+                    ->sortable(),
+                Tables\Columns\TextInputColumn::make('team2_goals')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
