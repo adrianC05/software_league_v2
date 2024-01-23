@@ -28,4 +28,5 @@ class Player extends Model
     {
         return $this->hasMany(PlayerSanction::class);
     }
+    
 }
