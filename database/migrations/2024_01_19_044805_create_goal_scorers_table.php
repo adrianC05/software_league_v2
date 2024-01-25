@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('player_id')->constrained('players')->onDelete('cascade');
             $table->integer('goals')->nullable();
+            // Foreign key to the games table
+            $table->foreignId('game_id')->constrained('games')->onDelete('cascade');
             $table->timestamps();
         });
     }

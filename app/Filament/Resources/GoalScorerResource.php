@@ -32,6 +32,11 @@ class GoalScorerResource extends Resource
                     ->searchable()
                     ->preload()
                     ->placeholder('Seleccione un jugador'),
+                Forms\Components\Select::make('game_id')
+                    ->relationship('game', 'id')
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Seleccione un partido'),
                 Forms\Components\TextInput::make('goals')
                     ->numeric(),
             ]);
@@ -58,6 +63,9 @@ class GoalScorerResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                // Name of the game
+                Tables\Columns\TextColumn::make('game.team.name')
+                    ->sortable(),
             ])
             ->filters([
                 //

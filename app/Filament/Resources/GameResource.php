@@ -47,10 +47,8 @@ class GameResource extends Resource
                     ->required(),
                 Forms\Components\TimePicker::make('time')
                     ->required(),
-                // team1_goals
                 Forms\Components\TextInput::make('team1_goals')
                     ->numeric(),
-                // team2_goals
                 Forms\Components\TextInput::make('team2_goals')
                     ->numeric(),
             ]);

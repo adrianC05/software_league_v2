@@ -23,4 +23,10 @@ class Game extends Model
         return $this->belongsTo(Team::class, 'team2_id');
     }
 
+    // One game has many goal scorers
+    public function goalScorers()
+    {
+        return $this->hasMany(GoalScorer::class);
+    }
+
 }
