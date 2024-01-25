@@ -16,4 +16,10 @@ class GoalScorer extends Model
     {
         return $this->belongsTo(Player::class);
     }
+
+    // One game has many goal scorers
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }
