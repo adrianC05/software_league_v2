@@ -51,6 +51,27 @@ class GameResource extends Resource
                     ->numeric(),
                 Forms\Components\TextInput::make('team2_goals')
                     ->numeric(),
+                Forms\Components\Repeater::make('goalScorers')
+                    ->relationship()
+                    ->columnSpan('full')
+                    ->schema([
+                        Forms\Components\Select::make('player_id')
+                            ->relationship('player', 'name')
+                            ->live(onBlur: true)
+                            ->options(
+                                \App\Models\Player::all()->mapWithKeys(function ($player) {
+                                    return [$player->id => $player->name . ' - ' . $player->team->name];
+                                })
+                            )
+                            ->searchable()
+                            ->required()
+                            ->preload()
+                            ->placeholder('Seleccione'),
+                        Forms\Components\TextInput::make('goals')
+                            ->numeric()
+                            ->required(),
+                            //
+                    ])->grid(3)->maxItems(2),
             ]);
     }
 

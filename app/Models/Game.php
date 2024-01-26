@@ -29,4 +29,9 @@ class Game extends Model
         return $this->hasMany(GoalScorer::class);
     }
 
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
+
 }
