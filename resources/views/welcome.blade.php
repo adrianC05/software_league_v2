@@ -16,10 +16,8 @@
 </head>
 
 <body class="antialiased">
-
     <div class="[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]" <div
         class="absolute inset-0 z-10 h-full w-full items-center px-5">
-
         <!---------------------------Barra de Opciones------------------------->
         <div class="z-10  text-center  w-full p-1 flex justify-center items-center">
             <div class="flex items-center ">
@@ -53,14 +51,14 @@
                 <img src="{{ asset('Imagenes/intro.jpeg') }}" alt="Descripción" class="rounded-md">
             </div>
 
-
             <div class="mt-20 flex justify-center items-center">
                 <div class="">
                     <!---------------Primera tabla--------------------------->
                     <div
                         class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
                         <div>
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 flex justify-center items-center ">TABLA DE POSICIONES</h2>
+                            <h2 class="mt-6 text-xl font-semibold text-gray-900 flex justify-center items-center ">TABLA
+                                DE POSICIONES</h2>
                             <!-- Bloque para mostrar la tabla de posiciones -->
                             <table class="content-table ">
                                 <thead>
@@ -100,25 +98,23 @@
                     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         <!---------------Segunda tabla--------------------------->
                         <div
-                            class="flex justify-center items-center  scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
+                            class="  justify-center items-center scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
                             <div>
-                                <h2 class="text-xl font-semibold text-gray-900 flex justify-center items-center ">
+                                <h2 class="text-xl font-semibold text-gray-900 flex justify-center items-center">
                                     HORARIOS
                                 </h2>
 
                                 <div x-data="imageSlider" x-init="initSlider(@json($vs))"
-                                    class="relative mx-auto max-w-2xl overflow-hidden rounded-md mt-6  sm:p-4 "
+                                    class="relative mx-auto max-w-2xl overflow-hidden rounded-md mt-6 sm:p-4 "
                                     style="background-image: url('{{ asset('Imagenes/horario.png') }}');">
                                     <div
                                         class="absolute right-5 top-5 z-10 rounded-full bg-gray-600 px-2 text-center text-sm text-white">
                                         <span x-text="currentIndex"></span>/<span x-text="matches.length"></span>
                                     </div>
-
                                     <button @click="previous()"
                                         class="absolute left-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md">
                                         <i class="fas fa-chevron-left text-2xl font-bold text-emerald-500"></i>
                                     </button>
-
                                     <button @click="forward()"
                                         class="absolute right-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md">
                                         <i class="fas fa-chevron-right text-2xl font-bold text-emerald-500"></i>
@@ -130,38 +126,42 @@
                                             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                                             x-transition:leave="transition transform duration-300"
                                             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                            class="absolute top-0">
+                                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                             <div class="match z-20 flex flex-col items-center">
                                                 <div class="flags flex">
                                                     <div class="">
                                                         <img src="{{ asset('Imagenes/escudo.jpg') }}"
-                                                            alt="Escudo Equipo 1"
-                                                            class="rounded-md w-20 h-20 md:w-20 md:h-20">
+                                                            alt="Escudo Equipo 1" class="rounded-md w-40 h-40">
                                                         <h4 class="text-white">{{ $vsItem->team2->name }}</h4>
                                                     </div>
-                                                    <span class="text-white mx-2">VS</span>
+                                                    <span class="text-white mx-4 mt-20 "><strong>VS</strong></span>
                                                     <div class="">
                                                         <img src="{{ asset('Imagenes/escudo.jpg') }}"
-                                                            alt="Escudo Equipo 2"
-                                                            class="rounded-md w-20 h-20 md:w-20 md:h-20">
+                                                            alt="Escudo Equipo 2" class="rounded-md w-40 h-40">
                                                         <h4 class="text-white">{{ $vsItem->team1->name }}</h4>
                                                     </div>
                                                 </div>
                                                 <!-- Agregar la fecha y hora -->
-                                                <div class=" mt-2">
+                                                <div class="mt-2">
                                                     <div class="text-white">
-                                                        <h4 class="">{{ $vsItem->date }}</h4>
-                                                        <h4 class="">{{ $vsItem->time }}</h4>
+                                                        <h4 class=""><strong>Fecha: </strong>{{ $vsItem->date }}</h4>
+                                                        <h4 class=""><strong>Hora: </strong>{{ $vsItem->time }}</h4>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                         @endforeach
                                     </div>
                                 </div>
+                                <button data-modal-target="static-modal" data-modal-toggle="static-modal"
+                                    class="my-4   text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    type="button">
+                                    Abrir Horario
+                                </button>
                             </div>
                         </div>
-
+                        
                         <!---------------Tercera tabla--------------------------->
                         <div
                             class="flex justify-center items-center  scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
@@ -174,7 +174,7 @@
                                             <th>TOP</th>
                                             <th>Nombre</th>
                                             <th>Goles</th>
-                                            <th>del Equipo</th>
+                                            <th>Equipo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -680,29 +680,118 @@
                 Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
             </div>
         </div>
-
-
     </div>
     </div>
+    <!-- Modal -->
+    <!-- Main modal -->
+    <div id="static-modal-overlay" class="fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-95 z-40 hidden"></div>
+    <div id="static-modal" data-modal-backdrop="overlay" tabindex="-1" aria-hidden="true"
+        class="flex justify-center items-center hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-8 w-full max-w-4xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-white">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-black">
+                        Horario Completo
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="static-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                        @foreach($vs as $vsItem)
+                        <div class="relative mx-auto max-w-2xl overflow-hidden rounded-md mt-6 sm:p-4"
+                            style="background-image: url('{{ asset('Imagenes/horario.png') }}'); background-size: cover;">
+                            <div class="match z-20 flex flex-col items-center">
+                                <div class="flags flex">
+                                    <div>
+                                        <img src="{{ asset('Imagenes/escudo.jpg') }}" alt="Escudo Equipo 1"
+                                            class="rounded-md w-40 h-40">
+                                        <h4 class="text-white ">{{ $vsItem->team2->name }}</h4>
+                                    </div>
+                                    <span class="text-white mx-4 mt-20 "><strong>VS</strong></span>
+                                    <div>
+                                        <img src="{{ asset('Imagenes/escudo.jpg') }}" alt="Escudo Equipo 2"
+                                            class="rounded-md w-40 h-40">
+                                        <h4 class="text-white">{{ $vsItem->team1->name }}</h4>
+                                    </div>
+                                </div>
+                                <!-- Agregar la fecha y hora -->
+                                <div class="mt-2">
+                                    <div class="text-white">
+                                        <h4 class=""><strong>Fecha: </strong>{{ $vsItem->date }}</h4>
+                                        <h4 class=""><strong>Hora: </strong>{{ $vsItem->time }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button data-modal-hide="static-modal" type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            // El códlpine.js que inicializa el slider y maneja la navegación
+            document.addEventListener("alpine:init", () => {
+                Alpine.data("imageSlider", () => ({
+                    currentIndex: 1,
+                    matches: @json($vs), // Aquí asumí que $vs contiene la información de los partidos
+                    previous() {
+                        if (this.currentIndex > 1) {
+                            this.currentIndex = this.currentIndex - 1;
+                        }
+                    },
+                    forward() {
+                        if (this.currentIndex < this.matches.length) {
+                            this.currentIndex = this.currentIndex + 1;
+                        }
+                    },
+                }));
+            });
+
+            //scrit modal
+            document.addEventListener('DOMContentLoaded', function () {
+                const modalToggles = document.querySelectorAll('[data-modal-toggle]');
+                const modalHides = document.querySelectorAll('[data-modal-hide]');
+                const modalOverlay = document.getElementById('static-modal-overlay');
+
+                modalToggles.forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        const target = document.getElementById(toggle.dataset.modalTarget);
+                        if (target) {
+                            target.classList.toggle('hidden');
+                            modalOverlay.classList.toggle('hidden');
+                        }
+                    });
+                });
+
+                modalHides.forEach(hide => {
+                    hide.addEventListener('click', () => {
+                        const target = document.getElementById(hide.dataset.modalHide);
+                        if (target) {
+                            target.classList.add('hidden');
+                            modalOverlay.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        </script>
 </body>
 
 </html>
-<script>
-    // El códlpine.js que inicializa el slider y maneja la navegación
-    document.addEventListener("alpine:init", () => {
-        Alpine.data("imageSlider", () => ({
-            currentIndex: 1,
-            matches: @json($vs), // Aquí asumí que $vs contiene la información de los partidos
-            previous() {
-                if (this.currentIndex > 1) {
-                    this.currentIndex = this.currentIndex - 1;
-                }
-            },
-            forward() {
-                if (this.currentIndex < this.matches.length) {
-                    this.currentIndex = this.currentIndex + 1;
-                }
-            },
-        }));
-    });
-</script>
