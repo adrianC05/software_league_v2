@@ -25,4 +25,5 @@ Route::get('/descargar1-pdf', function () {
     $archivoPdf = public_path('descargas/Plantillas.pdf');
     return response()->download($archivoPdf, 'Plantilla de incripción.pdf');
 });
-Route::get('/', [Controller::class, 'mostrarGoleadores']);
+
+Route::get('/', [Controller::class, 'versus']);

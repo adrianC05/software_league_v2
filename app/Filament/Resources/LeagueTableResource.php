@@ -30,7 +30,7 @@ class LeagueTableResource extends Resource
                     ->relationship('team', 'name')
                     ->searchable()
                     ->preload()
-                    ->placeholder('Seleccione el equipo sancionado'),
+                    ->placeholder('Seleccione el equipo'),
                 Forms\Components\TextInput::make('matches_played')
                     ->numeric(),
                 Forms\Components\TextInput::make('won')

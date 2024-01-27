@@ -9,6 +9,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Styles -->
     @vite('resources/css/app.css')
 </head>
@@ -32,10 +34,10 @@
                     <a href="{{ url('/espe') }}" class="p-6 font-semibold text-white hover:text-red-900">
                         Iniciar Sesión
                     </a>
-                    <a href="#reglamentario" class="p-6 pr-12 font-semibold text-white hover:text-red-900">
+                    <a href="#reglamentario" class="p-6 font-semibold text-white hover:text-red-900">
                         Reglamento
                     </a>
-                    <a href="#ubicacion" class="p-6 pl-12 font-semibold text-white hover:text-red-900">
+                    <a href="#ubicacion" class="p-6 font-semibold text-white hover:text-red-900">
                         Ubicación
                     </a>
                     <a href="{{ url('/descargar1-pdf') }}" class="p-6 font-semibold text-white hover:text-red-900">
@@ -58,31 +60,114 @@
                     <div
                         class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
                         <div>
-
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900">TABLA DE POSICIONES</h2>
-
-                            <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-                                Aqui se mostrara las estadisticas de los equipos
-                            </p>
+                            <h2 class="mt-6 text-xl font-semibold text-gray-900 flex justify-center items-center ">TABLA DE POSICIONES</h2>
+                            <!-- Bloque para mostrar la tabla de posiciones -->
+                            <table class="content-table ">
+                                <thead>
+                                    <tr>
+                                        <th>Equipo</th>
+                                        <th>Partidos Jugados</th>
+                                        <th>Ganados</th>
+                                        <th>Empatados</th>
+                                        <th> Perdidos</th>
+                                        <th>Goles a favor</th>
+                                        <th>Goles en contra</th>
+                                        <th>Diferencia de goles</th>
+                                        <th>Puntos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($resultados as $resultado)
+                                    <tr>
+                                        <td>{{ $resultado->team->name }}</td>
+                                        <!-- Agrega más celdas según las necesidades -->
+                                        <td>{{ $resultado->matches_played }}
+                                        </td>
+                                        <td>{{ $resultado->won }}</td>
+                                        <td>{{ $resultado->drawn }}</td>
+                                        <td>{{ $resultado->lost }}</td>
+                                        <td>{{ $resultado->goals_for }}</td>
+                                        <td>{{ $resultado->goals_against }}</td>
+                                        <td>{{ $resultado->goals_difference }}
+                                        </td>
+                                        <td>{{ $resultado->points }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         <!---------------Segunda tabla--------------------------->
                         <div
-                            class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
+                            class="flex justify-center items-center  scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
                             <div>
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900">PROXIMOS PARTIDOS</h2>
-                                <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-                                    Aqui se mostrara los proximos versus del futbol
-                                </p>
+                                <h2 class="text-xl font-semibold text-gray-900 flex justify-center items-center ">
+                                    HORARIOS
+                                </h2>
+
+                                <div x-data="imageSlider" x-init="initSlider(@json($vs))"
+                                    class="relative mx-auto max-w-2xl overflow-hidden rounded-md mt-6  sm:p-4 "
+                                    style="background-image: url('{{ asset('Imagenes/horario.png') }}');">
+                                    <div
+                                        class="absolute right-5 top-5 z-10 rounded-full bg-gray-600 px-2 text-center text-sm text-white">
+                                        <span x-text="currentIndex"></span>/<span x-text="matches.length"></span>
+                                    </div>
+
+                                    <button @click="previous()"
+                                        class="absolute left-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md">
+                                        <i class="fas fa-chevron-left text-2xl font-bold text-emerald-500"></i>
+                                    </button>
+
+                                    <button @click="forward()"
+                                        class="absolute right-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md">
+                                        <i class="fas fa-chevron-right text-2xl font-bold text-emerald-500"></i>
+                                    </button>
+                                    <div class="relative h-80 w-80 md:w-96">
+                                        @foreach($vs as $vsItem)
+                                        <div x-show="currentIndex == {{ $loop->index + 1 }}"
+                                            x-transition:enter="transition transform duration-300"
+                                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                            x-transition:leave="transition transform duration-300"
+                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                            class="absolute top-0">
+                                            <div class="match z-20 flex flex-col items-center">
+                                                <div class="flags flex">
+                                                    <div class="">
+                                                        <img src="{{ asset('Imagenes/escudo.jpg') }}"
+                                                            alt="Escudo Equipo 1"
+                                                            class="rounded-md w-20 h-20 md:w-20 md:h-20">
+                                                        <h4 class="text-white">{{ $vsItem->team2->name }}</h4>
+                                                    </div>
+                                                    <span class="text-white mx-2">VS</span>
+                                                    <div class="">
+                                                        <img src="{{ asset('Imagenes/escudo.jpg') }}"
+                                                            alt="Escudo Equipo 2"
+                                                            class="rounded-md w-20 h-20 md:w-20 md:h-20">
+                                                        <h4 class="text-white">{{ $vsItem->team1->name }}</h4>
+                                                    </div>
+                                                </div>
+                                                <!-- Agregar la fecha y hora -->
+                                                <div class=" mt-2">
+                                                    <div class="text-white">
+                                                        <h4 class="">{{ $vsItem->date }}</h4>
+                                                        <h4 class="">{{ $vsItem->time }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <!---------------Tercera tabla--------------------------->
                         <div
-                            class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
+                            class="flex justify-center items-center  scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
                             <div>
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 flex justify-center items-center">
-                                    TOP 5 DE GOLEADORES</h2>
+                                <h2 class="text-xl font-semibold text-gray-900 flex justify-center items-center">
+                                    TOP 7 DE GOLEADORES</h2>
                                 <table class="content-table ">
                                     <thead>
                                         <tr>
@@ -96,7 +181,7 @@
                                         @php
                                         $rank = 1;
                                         @endphp
-                                        @foreach($goleadores->sortByDesc('goals')->take(5) as $goleador)
+                                        @foreach($goleadores->sortByDesc('goals')->take(7) as $goleador)
                                         <tr>
                                             <td>{{ $rank++ }}</td>
                                             <td>
@@ -602,3 +687,22 @@
 </body>
 
 </html>
+<script>
+    // El códlpine.js que inicializa el slider y maneja la navegación
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("imageSlider", () => ({
+            currentIndex: 1,
+            matches: @json($vs), // Aquí asumí que $vs contiene la información de los partidos
+            previous() {
+                if (this.currentIndex > 1) {
+                    this.currentIndex = this.currentIndex - 1;
+                }
+            },
+            forward() {
+                if (this.currentIndex < this.matches.length) {
+                    this.currentIndex = this.currentIndex + 1;
+                }
+            },
+        }));
+    });
+</script>

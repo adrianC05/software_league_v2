@@ -16,5 +16,12 @@ class LeagueTable extends Model
     {
         return $this->belongsTo(Team::class);
     }
+    // LeagueTable.php
+
+    public function games()
+    {
+        return $this->hasMany(Game::class, 'team_id')->latest('date')->limit(3);
+    }
+
 
 }
