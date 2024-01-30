@@ -25,7 +25,7 @@ class EspePanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('espe')
-            ->path('espe')
+            ->path('espe')  
             ->login()
             ->profile()
             ->colors([

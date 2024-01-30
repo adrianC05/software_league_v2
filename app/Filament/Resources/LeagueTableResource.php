@@ -55,8 +55,8 @@ class LeagueTableResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('team.name')
-                    ->numeric()
-                    ->sortable(),
+                    ->toggleable()
+                    ->numeric(),
                 Tables\Columns\TextColumn::make('team.groups.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('matches_played')
@@ -91,7 +91,8 @@ class LeagueTableResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('points', 'desc')
+
             ->filters([
                 //
             ])

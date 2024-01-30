@@ -12,21 +12,28 @@ class GoalSoccersChart extends ChartWidget
 
     protected function getData(): array
     {
-        // Obtiene los 5 jugadores con más goles
-        $topScorers = GoalScorer::with('player')->orderByDesc('goals')->take(5)->get();
+        // Obtiene los 5 jugadores con más goles y la suma de sus goles
+        $topScorers = GoalScorer::with('player')
+            ->selectRaw('player_id, SUM(goals) as total_goals')
+            ->groupBy('player_id')
+            ->orderByDesc('total_goals')
+            ->take(5)
+            ->get();
 
         return [
-            // Muestra los goleadores con su número de goles
+            // Muestra los goleadores con su número total de goles
             'datasets' => [
                 [
                     'label' => 'Goles Anotados',
-                    'data' => $topScorers->pluck('goals')->toArray(),
+                    'data' => $topScorers->pluck('total_goals')->toArray(),
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#9BD0F5',
                 ],
             ],
             // Muestra los nombres de los 5 jugadores
-            'labels' => $topScorers->pluck('player.name')->toArray(),
+            'labels' => $topScorers->map(function ($scorer) {
+                return $scorer->player->name;
+            })->toArray(),
         ];
     }
 

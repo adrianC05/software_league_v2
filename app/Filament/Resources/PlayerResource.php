@@ -63,10 +63,8 @@ class PlayerResource extends Resource
                 Tables\Columns\TextColumn::make('lastname')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cedula')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('cellphone')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('sex')
                     ->searchable(),

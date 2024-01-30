@@ -58,6 +58,10 @@ class GoalScorerResource extends Resource
                 Tables\Columns\TextColumn::make('player.team.name')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('game.team2.name')
+                    ->label('Gol/es a')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('goals')
                     ->numeric()
                     ->sortable(),
@@ -77,7 +81,7 @@ class GoalScorerResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
