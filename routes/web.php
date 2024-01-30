@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::get('/descargar1-pdf', function () {
     $archivoPdf = public_path('descargas/Plantillas.pdf');
     return response()->download($archivoPdf, 'Plantilla de incripción.pdf');
 });
+Route::get('/', [Controller::class, 'mostrarGoleadores']);

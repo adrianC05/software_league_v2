@@ -52,11 +52,11 @@
             </div>
 
 
-            <div class="mt-20 ">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div class="mt-20 flex justify-center items-center">
+                <div class="">
                     <!---------------Primera tabla--------------------------->
                     <div
-                        class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
                         <div>
 
                             <h2 class="mt-6 text-xl font-semibold text-gray-900">TABLA DE POSICIONES</h2>
@@ -66,22 +66,49 @@
                             </p>
                         </div>
                     </div>
-                    <!---------------Segunda tabla--------------------------->
-                    <div
-                        class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                        <div>
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900">PROXIMOS PARTIDOS</h2>
-                            <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-                                Aqui se mostrara los proximos versus del futbol
-                            </p>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        <!---------------Segunda tabla--------------------------->
+                        <div
+                            class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
+                            <div>
+                                <h2 class="mt-6 text-xl font-semibold text-gray-900">PROXIMOS PARTIDOS</h2>
+                                <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+                                    Aqui se mostrara los proximos versus del futbol
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <!---------------Tercera tabla--------------------------->
-                    <div
-                        class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                        <div>
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900">GOLEADORES DE CADA EQUIPO</h2>
-                            <p class="mt-4 text-gray-500 text-sm leading-relaxed">Aqui se mostrara los goleadores</p>
+                        <!---------------Tercera tabla--------------------------->
+                        <div
+                            class="scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
+                            <div>
+                                <h2 class="mt-6 text-xl font-semibold text-gray-900 flex justify-center items-center">
+                                    TOP 5 DE GOLEADORES</h2>
+                                <table class="content-table ">
+                                    <thead>
+                                        <tr>
+                                            <th>TOP</th>
+                                            <th>Nombre</th>
+                                            <th>Goles</th>
+                                            <th>del Equipo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                        $rank = 1;
+                                        @endphp
+                                        @foreach($goleadores->sortByDesc('goals')->take(5) as $goleador)
+                                        <tr>
+                                            <td>{{ $rank++ }}</td>
+                                            <td>
+                                                {{ $goleador->player->name }} {{ $goleador->player->lastname }}
+                                            </td>
+                                            <td>{{ $goleador->goals }}</td>
+                                            <td>{{ $goleador->player->team->name }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
