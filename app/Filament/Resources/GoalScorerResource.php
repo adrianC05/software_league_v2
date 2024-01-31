@@ -10,9 +10,13 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\Summarizers\Average;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\Summarizers\Count;
+use Filament\Tables\Columns\Summarizers\Sum;
+use Illuminate\Database\Query\Builder;
+use Filament\Tables\Grouping\Group;
 
 class GoalScorerResource extends Resource
 {
@@ -51,6 +55,11 @@ class GoalScorerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->groups([
+                Group::make('player.name')
+                    ->label('Goles')
+                    ->collapsible(),
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('player.name')
                     ->numeric()
@@ -64,6 +73,7 @@ class GoalScorerResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('goals')
                     ->numeric()
+                    ->summarize(Sum::make()->label('Total'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

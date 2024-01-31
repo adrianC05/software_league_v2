@@ -25,12 +25,15 @@ class EspePanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('espe')
-            ->path('espe')  
+            ->path('espe')
             ->login()
             ->profile()
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => 'rgb(99, 102, 241)',
             ])
+            ->font('Poppins')
+            ->brandName('Software League')
+
             ->navigationGroups([
                 'Contabilidad',
                 "Sanciones",

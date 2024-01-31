@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Grouping\Group;
 
 class PlayerResource extends Resource
 {
@@ -54,6 +55,11 @@ class PlayerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->groups([
+                Group::make('team.name')
+                    ->label('Equipo')
+                    ->collapsible(),
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('team.name')
                     ->numeric()
