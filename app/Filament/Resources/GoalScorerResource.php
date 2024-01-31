@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GoalScorerResource\Pages;
 use App\Filament\Resources\GoalScorerResource\RelationManagers;
+use App\Models\Game;
 use App\Models\GoalScorer;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -35,6 +36,11 @@ class GoalScorerResource extends Resource
                 Forms\Components\Select::make('game_id')
                     ->relationship('game', 'id')
                     ->searchable()
+                    ->options(
+                        Game::all()->mapWithKeys(function ($game) {
+                            return [$game->id => $game->team1->name . ' vs ' . $game->team2->name];
+                        })
+                    )
                     ->preload()
                     ->placeholder('Seleccione un partido'),
                 Forms\Components\TextInput::make('goals')
@@ -50,6 +56,10 @@ class GoalScorerResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('player.team.name')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('game.team2.name')
+                    ->label('Gol/es a')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('goals')
@@ -71,7 +81,7 @@ class GoalScorerResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -28,29 +28,59 @@ class GameResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('round_id')
-                    ->relationship('round', 'name')
-                    ->required()
-                    ->preload()
-                    ->placeholder('Seleccione una ronda'),
-                Forms\Components\Select::make('team1_id')
-                    ->relationship('team1', 'name')
-                    ->required()
-                    ->preload()
-                    ->placeholder('Seleccione una equipo'),
-                Forms\Components\Select::make('team2_id')
-                    ->relationship('team2', 'name')
-                    ->required()
-                    ->preload()
-                    ->placeholder('Seleccione una equipo'),
-                Forms\Components\DatePicker::make('date')
-                    ->required(),
-                Forms\Components\TimePicker::make('time')
-                    ->required(),
-                Forms\Components\TextInput::make('team1_goals')
-                    ->numeric(),
-                Forms\Components\TextInput::make('team2_goals')
-                    ->numeric(),
+                Forms\Components\Section::make('Información sobre las fechas')
+                    ->compact()
+                    ->schema([
+                        Forms\Components\Select::make('round_id')
+                            ->relationship('round', 'name')
+                            ->required()
+                            ->preload()
+                            ->placeholder('Seleccione una ronda'),
+                        Forms\Components\DatePicker::make('date')
+                            ->required(),
+                        Forms\Components\TimePicker::make('time')
+                            ->required(),
+                    ])->columns(3),
+                Forms\Components\Section::make('Información sobre el partido')
+                    ->compact()
+                    ->schema([
+                        Forms\Components\Select::make('team1_id')
+                            ->relationship('team1', 'name')
+                            ->required()
+                            ->preload()
+                            ->placeholder('Seleccione una equipo'),
+                        Forms\Components\Select::make('team2_id')
+                            ->relationship('team2', 'name')
+                            ->required()
+                            ->preload()
+                            ->placeholder('Seleccione una equipo'),
+
+                        Forms\Components\TextInput::make('team1_goals')
+                            ->numeric(),
+                        Forms\Components\TextInput::make('team2_goals')
+                            ->numeric(),
+                    ])->columns(4),
+                Forms\Components\Repeater::make('goalScorers')
+                    ->relationship()
+                    ->columnSpan('full')
+                    ->schema([
+                        Forms\Components\Select::make('player_id')
+                            ->relationship('player', 'name')
+                            ->live(onBlur: true)
+                            ->options(
+                                \App\Models\Player::all()->mapWithKeys(function ($player) {
+                                    return [$player->id => $player->name . ' - ' . $player->team->name];
+                                })
+                            )
+                            ->searchable()
+                            ->required()
+                            ->preload()
+                            ->placeholder('Seleccione'),
+                        Forms\Components\TextInput::make('goals')
+                            ->numeric()
+                            ->required(),
+                        //
+                    ])->grid(3),
             ]);
     }
 

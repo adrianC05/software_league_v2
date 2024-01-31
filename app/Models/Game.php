@@ -30,4 +30,9 @@ class Game extends Model
     }
     
 
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
+
 }
