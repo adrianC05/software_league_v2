@@ -29,8 +29,10 @@ class ExpenseResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('description')
+                    ->label('Descripción')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('value')
+                    ->label('Valor')
                     ->numeric(),
                 Forms\Components\DatePicker::make('date'),
             ]);
@@ -41,18 +43,23 @@ class ExpenseResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('value')
+                    ->label('Valor')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('date')
+                    ->label('Fecha')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

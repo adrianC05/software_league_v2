@@ -30,24 +30,31 @@ class PlayerResource extends Resource
             ->schema([
                 Forms\Components\Select::make('team_id')
                     ->relationship('team', 'name')
+                    ->label('Equipo')
                     ->searchable()
                     ->preload()
                     ->placeholder('Seleccione el equipo sancionado'),
                 Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('lastname')
+                    ->label('Apellido')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('cedula')
+                    ->label('Cédula')
                     ->numeric(),
                 Forms\Components\TextInput::make('cellphone')
+                    ->label('Teléfono')
                     ->tel()
                     ->numeric(),
                 Forms\Components\Select::make('sex')
+                    ->label('Sexo')
                     ->options([
                         'Masculino' => 'Masculino',
                         'Femenino' => 'Femenino',
                     ]),
                 Forms\Components\TextInput::make('semester')
+                    ->label('Semestre')
                     ->maxLength(255),
             ]);
     }
@@ -62,19 +69,26 @@ class PlayerResource extends Resource
             ])
             ->columns([
                 Tables\Columns\TextColumn::make('team.name')
+                    ->label('Equipo')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('lastname')
+                    ->label('Apellido')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cedula')
+                    ->label('Cédula')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('cellphone')
+                    ->label('Teléfono')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('sex')
+                    ->label('Sexo')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('semester')
+                    ->label('Semestre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

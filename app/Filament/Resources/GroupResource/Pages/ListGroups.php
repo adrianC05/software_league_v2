@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListGroups extends ListRecords
 {
     protected static string $resource = GroupResource::class;
+    protected ?string $heading = 'Grupos';
 
     protected function getHeaderActions(): array
     {

@@ -28,9 +28,11 @@ class RoundResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\Textarea::make('description')
+                    ->label('Descripción')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -41,8 +43,10 @@ class RoundResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

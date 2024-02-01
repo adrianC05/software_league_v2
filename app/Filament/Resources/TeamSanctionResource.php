@@ -29,17 +29,24 @@ class TeamSanctionResource extends Resource
             ->schema([
                 Forms\Components\Select::make('team_id')
                     ->relationship('team', 'name')
+                    ->label('Equipo sancionado')
                     ->searchable()
                     ->preload()
-                    ->placeholder('Seleccione el equipo sancionado'),
+                    ->placeholder('Seleccione'),
                 Forms\Components\Select::make('type_sanction_id')
+                    ->label('Tipo de sanción')
                     ->relationship('typeSanction', 'name')
                     ->searchable()
                     ->preload()
-                    ->placeholder('Seleccione el equipo sancionado'),
-                Forms\Components\Toggle::make('status'),
-                Forms\Components\DatePicker::make('date'),
-            ]);
+                    ->placeholder('Seleccione'),
+                Forms\Components\Toggle::make('status')
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->inline(false)
+                    ->label('Estado'),
+                Forms\Components\DatePicker::make('date')
+                    ->label('Fecha'),
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -47,14 +54,18 @@ class TeamSanctionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('team.name')
+                    ->label('Equipo')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('typeSanction.name')
+                    ->label('Tipo de sanción')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('status')
+                    ->label('Estado')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('date')
+                    ->label('Fecha')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

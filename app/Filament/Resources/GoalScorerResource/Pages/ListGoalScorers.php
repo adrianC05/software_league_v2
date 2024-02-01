@@ -9,7 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListGoalScorers extends ListRecords
 {
     protected static string $resource = GoalScorerResource::class;
-
+    protected ?string $heading = 'Goleadores';
     protected function getHeaderActions(): array
     {
         return [

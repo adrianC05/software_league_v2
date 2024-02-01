@@ -9,7 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListGames extends ListRecords
 {
     protected static string $resource = GameResource::class;
-
+    protected ?string $heading = 'Partidos';
     protected function getHeaderActions(): array
     {
         return [
