@@ -9,7 +9,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Styles -->
+    <link rel="stylesheet" href="welcome.css">
     @vite('resources/css/app.css')
 </head>
 
@@ -32,10 +35,10 @@
                     <a href="{{ url('/espe') }}" class="p-6 font-semibold text-white hover:text-red-900">
                         Iniciar Sesión
                     </a>
-                    <a href="#reglamentario" class="p-6 pr-12 font-semibold text-white hover:text-red-900">
+                    <a href="#reglamentario" class="p-6 font-semibold text-white hover:text-red-900">
                         Reglamento
                     </a>
-                    <a href="#ubicacion" class="p-6 pl-12 font-semibold text-white hover:text-red-900">
+                    <a href="#ubicacion" class="p-6 font-semibold text-white hover:text-red-900">
                         Ubicación
                     </a>
                     <a href="{{ url('/descargar1-pdf') }}" class="p-6 font-semibold text-white hover:text-red-900">
@@ -113,6 +116,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ---------------------------------------------------------------------------------->
             <!-- Nueva sección para el Reglamento -->
             <div id="reglamentario" class="mt-16">
                 <h2 class="flex justify-center items-center text-2xl font-semibold text-white mb-4">REGLAMENTO
