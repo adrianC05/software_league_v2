@@ -161,7 +161,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                         <!---------------Tercera tabla--------------------------->
                         <div
                             class="flex justify-center items-center  scale-100 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01]">
@@ -181,17 +181,18 @@
                                         @php
                                         $rank = 1;
                                         @endphp
-                                        @foreach($goleadores->sortByDesc('goals')->take(7) as $goleador)
+                                        @foreach($topScorers as $topScorer)
                                         <tr>
                                             <td>{{ $rank++ }}</td>
                                             <td>
-                                                {{ $goleador->player->name }} {{ $goleador->player->lastname }}
+                                                {{ $topScorer->player->name }} {{ $topScorer->player->lastname }}
                                             </td>
-                                            <td>{{ $goleador->goals }}</td>
-                                            <td>{{ $goleador->player->team->name }}</td>
+                                            <td>{{ $topScorer->total_goals }}</td>
+                                            <td>{{ $topScorer->player->team->name }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
