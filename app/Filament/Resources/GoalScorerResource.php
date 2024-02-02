@@ -10,9 +10,13 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\Summarizers\Average;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\Summarizers\Count;
+use Filament\Tables\Columns\Summarizers\Sum;
+use Illuminate\Database\Query\Builder;
+use Filament\Tables\Grouping\Group;
 
 class GoalScorerResource extends Resource
 {
@@ -30,11 +34,13 @@ class GoalScorerResource extends Resource
             ->schema([
                 Forms\Components\Select::make('player_id')
                     ->relationship('player', 'name')
+                    ->label('Jugador')
                     ->searchable()
                     ->preload()
                     ->placeholder('Seleccione un jugador'),
                 Forms\Components\Select::make('game_id')
                     ->relationship('game', 'id')
+                    ->label('Partido')
                     ->searchable()
                     ->options(
                         Game::all()->mapWithKeys(function ($game) {
@@ -44,6 +50,7 @@ class GoalScorerResource extends Resource
                     ->preload()
                     ->placeholder('Seleccione un partido'),
                 Forms\Components\TextInput::make('goals')
+                    ->label('Goles')
                     ->numeric(),
             ]);
     }
@@ -51,11 +58,18 @@ class GoalScorerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->groups([
+                Group::make('player.name')
+                    ->label('Goles anotados por jugador')
+                    ->collapsible(),
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('player.name')
+                    ->label('Jugador')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('player.team.name')
+                    ->label('Equipo')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('game.team2.name')
@@ -63,19 +77,21 @@ class GoalScorerResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('goals')
+                    ->label('Goles')
                     ->numeric()
+                    ->summarize(Sum::make()->label('Total'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Fecha de creación')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Fecha de actualización')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                // Name of the game
-                Tables\Columns\TextColumn::make('game.team.name')
-                    ->sortable(),
+
             ])
             ->filters([
                 //

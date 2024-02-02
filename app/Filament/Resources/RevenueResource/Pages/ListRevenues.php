@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListRevenues extends ListRecords
 {
     protected static string $resource = RevenueResource::class;
+    protected ?string $heading = 'Ingresos';
 
     protected function getHeaderActions(): array
     {

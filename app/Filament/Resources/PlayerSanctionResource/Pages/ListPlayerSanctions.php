@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListPlayerSanctions extends ListRecords
 {
     protected static string $resource = PlayerSanctionResource::class;
+    protected ?string $heading = 'Sanciones de Jugadores';
 
     protected function getHeaderActions(): array
     {

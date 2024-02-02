@@ -28,15 +28,18 @@ class GroupResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('description')
+                    ->label('Descripción')
                     ->maxLength(255),
                 // Section for teams
 
                 Forms\Components\Select::make('teams')
                     ->relationship('teams', 'name')
                     ->multiple()
+                    ->label('Equipos')
                     ->preload()
                     ->placeholder('Seleccione los equipos'),
             ]);
@@ -47,17 +50,22 @@ class GroupResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable(),
                 // List teams
                 Tables\Columns\TextColumn::make('teams.name')
+                    ->label('Equipos')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

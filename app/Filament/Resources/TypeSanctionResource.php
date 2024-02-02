@@ -28,14 +28,18 @@ class TypeSanctionResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('suspended_games')
+                    ->label('Juegos suspendidos')
                     ->numeric(),
                 Forms\Components\TextInput::make('money_to_pay')
+                    ->label('Dinero a pagar')
                     ->numeric(),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\Textarea::make('description')
+                    ->label('Descripción')
                     ->maxLength(255),
-            ]);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -43,14 +47,18 @@ class TypeSanctionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('suspended_games')
+                    ->label('Juegos suspendidos')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('money_to_pay')
+                    ->label('Dinero a pagar')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -85,8 +93,8 @@ class TypeSanctionResource extends Resource
     {
         return [
             'index' => Pages\ListTypeSanctions::route('/'),
-            'create' => Pages\CreateTypeSanction::route('/create'),
-            'edit' => Pages\EditTypeSanction::route('/{record}/edit'),
+            //'create' => Pages\CreateTypeSanction::route('/create'),
+            //'edit' => Pages\EditTypeSanction::route('/{record}/edit'),
         ];
     }
 }

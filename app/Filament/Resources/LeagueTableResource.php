@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Grouping\Group;
 
 class LeagueTableResource extends Resource
 {
@@ -28,24 +29,27 @@ class LeagueTableResource extends Resource
             ->schema([
                 Forms\Components\Select::make('team_id')
                     ->relationship('team', 'name')
+                    ->label('Equipo')
                     ->searchable()
                     ->preload()
                     ->placeholder('Seleccione el equipo'),
                 Forms\Components\TextInput::make('matches_played')
+                    ->label('PJ')
                     ->numeric(),
                 Forms\Components\TextInput::make('won')
+                    ->label('G')
                     ->numeric(),
-                Forms\Components\TextInput::make('drawn')
+                Forms\Components\TextInput::make('E')
                     ->numeric(),
-                Forms\Components\TextInput::make('lost')
+                Forms\Components\TextInput::make('P')
                     ->numeric(),
-                Forms\Components\TextInput::make('goals_for')
+                Forms\Components\TextInput::make('GF')
                     ->numeric(),
-                Forms\Components\TextInput::make('goals_against')
+                Forms\Components\TextInput::make('GC')
                     ->numeric(),
-                Forms\Components\TextInput::make('goals_difference')
+                Forms\Components\TextInput::make('GD')
                     ->numeric(),
-                Forms\Components\TextInput::make('points')
+                Forms\Components\TextInput::make('PTS')
                     ->numeric(),
             ]);
     }
@@ -53,34 +57,49 @@ class LeagueTableResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->groups([
+                Group::make('team.groups.name')
+                    ->label('Grupo')
+                    ->collapsible(),
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('team.name')
+                    ->label('Equipo')
                     ->toggleable()
                     ->numeric(),
                 Tables\Columns\TextColumn::make('team.groups.name')
+                    ->label('Grupo')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('matches_played')
+                    ->label('PJ')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('won')
+                    ->label('G')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('drawn')
+                    ->label('E')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lost')
+                    ->label('P')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('goals_for')
+                    ->label('GF')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('goals_against')
+                    ->label('GC')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('goals_difference')
+                    ->label('GD')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('points')
+                    ->label('PTS')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

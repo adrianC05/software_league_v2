@@ -29,16 +29,25 @@ class PlayerSanctionResource extends Resource
             ->schema([
                 Forms\Components\Select::make('player_id')
                     ->relationship('player', 'name')
+                    ->label('Jugador')
                     ->searchable()
+                    ->options(
+                        \App\Models\Player::all()->mapWithKeys(function ($player) {
+                            return [$player->id => $player->name . ' - ' . $player->team->name];
+                        })
+                    )
                     ->preload()
                     ->placeholder('Seleccione un jugador'),
                 Forms\Components\Select::make('type_sanction_id')
                     ->relationship('typeSanction', 'name')
+                    ->label('Tipo de sanción')
                     ->searchable()
                     ->preload()
                     ->placeholder('Seleccione el jugador sancionado'),
-                Forms\Components\Toggle::make('status'),
-                Forms\Components\DatePicker::make('date'),
+                Forms\Components\Toggle::make('status')
+                    ->label('Estado'),
+                Forms\Components\DatePicker::make('date')
+                    ->label('Fecha')
             ]);
     }
 
@@ -47,17 +56,22 @@ class PlayerSanctionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('player.name')
+                    ->label('Jugador')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('player.team.name')
+                    ->label('Equipo')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('typeSanction.name')
+                    ->label('Tipo de sanción')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('status')
+                    ->label('Estado')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('date')
+                    ->label('Fecha')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

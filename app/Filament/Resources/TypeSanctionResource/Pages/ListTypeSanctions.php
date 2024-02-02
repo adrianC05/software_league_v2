@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListTypeSanctions extends ListRecords
 {
     protected static string $resource = TypeSanctionResource::class;
+    protected ?string $heading = 'Tipos de sanciones';
 
     protected function getHeaderActions(): array
     {

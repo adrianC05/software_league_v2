@@ -8,11 +8,12 @@ use App\Models\Team;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use Filament\Forms\Components\TextInput;
 class TeamResource extends Resource
 {
     protected static ?string $model = Team::class;
@@ -28,16 +29,24 @@ class TeamResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('goodmother')
-                    ->maxLength(255),
+                /* Forms\Components\TextInput::make('goodmother')
+                    ->label('Madrina')
+                    ->maxLength(255), */
                 Forms\Components\TextInput::make('enrollment')
+                    ->mask(RawJs::make('$money($input)'))
+                    ->stripCharacters(',')
                     ->numeric(),
-                Forms\Components\Toggle::make('status'),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\Toggle::make('status')
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->inline(false)
+                    ->label('Estado'),
+                Forms\Components\Textarea::make('description')
                     ->maxLength(255),
-            ]);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -45,18 +54,25 @@ class TeamResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('goodmother')
-                    ->searchable(),
+                /* Tables\Columns\TextColumn::make('goodmother')
+                    ->label('Madrina')
+                    ->searchable(), */
                 Tables\Columns\TextColumn::make('enrollment')
+                    ->label('Matrícula')
                     ->numeric()
+                    ->money('USD')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('status')
+                    ->label('Estado')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
                     ->searchable(),
                 // Group
                 Tables\Columns\TextColumn::make('groups.name')
+                    ->label('Grupo')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

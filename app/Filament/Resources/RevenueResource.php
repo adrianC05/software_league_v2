@@ -27,12 +27,15 @@ class RevenueResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('description')
+                Forms\Components\Textarea::make('description')
+                    ->label('Descripción')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('value')
+                    ->label('Valor')
                     ->numeric(),
-                Forms\Components\DatePicker::make('date'),
-            ]);
+                Forms\Components\DatePicker::make('date')
+                    ->label('Fecha'),
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -40,11 +43,14 @@ class RevenueResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('value')
+                    ->label('Valor')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('date')
+                    ->label('Fecha')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

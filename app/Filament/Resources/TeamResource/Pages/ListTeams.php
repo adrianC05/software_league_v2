@@ -9,7 +9,8 @@ use Filament\Resources\Pages\ListRecords;
 class ListTeams extends ListRecords
 {
     protected static string $resource = TeamResource::class;
-
+    protected ?string $heading = 'Equipos';
+    
     protected function getHeaderActions(): array
     {
         return [

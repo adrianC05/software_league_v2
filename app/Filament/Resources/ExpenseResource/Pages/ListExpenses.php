@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListExpenses extends ListRecords
 {
     protected static string $resource = ExpenseResource::class;
-
+    protected ?string $heading = 'Gastos';
     protected function getHeaderActions(): array
     {
         return [

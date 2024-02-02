@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListLeagueTables extends ListRecords
 {
     protected static string $resource = LeagueTableResource::class;
+    protected ?string $heading = 'Tabla de posiciones';
 
     protected function getHeaderActions(): array
     {
