@@ -29,7 +29,7 @@ class TeamResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->label('Nombre')
+                    ->label('Nombres')
                     ->required()
                     ->maxLength(255),
                 /* Forms\Components\TextInput::make('goodmother')
