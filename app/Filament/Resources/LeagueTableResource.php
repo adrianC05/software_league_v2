@@ -39,17 +39,23 @@ class LeagueTableResource extends Resource
                 Forms\Components\TextInput::make('won')
                     ->label('G')
                     ->numeric(),
-                Forms\Components\TextInput::make('E')
+                Forms\Components\TextInput::make('drawn')
+                    ->label('E')
                     ->numeric(),
-                Forms\Components\TextInput::make('P')
+                Forms\Components\TextInput::make('lost')
+                    ->label('P')
                     ->numeric(),
-                Forms\Components\TextInput::make('GF')
+                Forms\Components\TextInput::make('goals_for')
+                    ->label('GF')
                     ->numeric(),
-                Forms\Components\TextInput::make('GC')
+                Forms\Components\TextInput::make('goals_against')
+                    ->label('GC')
                     ->numeric(),
-                Forms\Components\TextInput::make('GD')
+                Forms\Components\TextInput::make('goals_difference')
+                    ->label('GD')
                     ->numeric(),
-                Forms\Components\TextInput::make('PTS')
+                Forms\Components\TextInput::make('points')
+                    ->label('PTS')
                     ->numeric(),
             ]);
     }
