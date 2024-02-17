@@ -54,12 +54,12 @@ class ExpenseResource extends Resource
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Creado')
+                    ->label('Creado en')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Actualizado')
+                    ->label('Actualizado en')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
