@@ -29,9 +29,11 @@ class EspePanelProvider extends PanelProvider
             ->path('espe')
             ->login()
             ->profile()
+            //->registration()
             ->colors([
                 'primary' => 'rgb(99, 102, 241)',
             ])
+            ->sidebarCollapsibleOnDesktop(true)
             ->font('Poppins')
             ->brandName('Software League')
 
@@ -62,6 +64,7 @@ class EspePanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class
             ])
 
             ->plugin(
@@ -78,6 +81,9 @@ class EspePanelProvider extends PanelProvider
                         force: false, // force the user to enable 2FA before they can use the application (default = false)
                     )
 
+            )
+            ->plugin(
+                \Hasnayeen\Themes\ThemesPlugin::make()
             )
 
             ->authMiddleware([
