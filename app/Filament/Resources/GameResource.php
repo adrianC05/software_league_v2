@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class GameResource extends Resource
 {
@@ -103,6 +104,12 @@ class GameResource extends Resource
         if (auth()->user()->roles->contains('name', 'Admin')) {
             $bulkActions[] = Tables\Actions\BulkActionGroup::make([
                 Tables\Actions\DeleteBulkAction::make(),
+
+
+            ]);
+        } elseif (auth()->user()->roles->contains('name', 'Vocal')) {
+            $bulkActions[] = Tables\Actions\BulkActionGroup::make([
+                ExportBulkAction::make(),
             ]);
         }
 
