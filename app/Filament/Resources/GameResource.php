@@ -27,6 +27,18 @@ class GameResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $editable = [];
+        if (auth()->user()->roles->contains('name', 'Admin')) {
+            $editable = [
+                'round_id',
+                'date',
+                'time',
+                'team1_id',
+                'team2_id',
+
+            ];
+        }
+
         return $form
             ->schema([
                 Forms\Components\Section::make('Información sobre las fechas')
@@ -35,14 +47,17 @@ class GameResource extends Resource
                         Forms\Components\Select::make('round_id')
                             ->label('Ronda')
                             ->relationship('round', 'name')
+                            ->disabled(!in_array('round_id', $editable))
                             ->required()
                             ->preload()
                             ->placeholder('Seleccione una ronda'),
                         Forms\Components\DatePicker::make('date')
                             ->label('Fecha')
+                            ->disabled(!in_array('date', $editable))
                             ->required(),
                         Forms\Components\TimePicker::make('time')
                             ->label('Hora')
+                            ->disabled(!in_array('time', $editable))
                             ->required(),
                     ])->columns(3),
                 Forms\Components\Section::make('Información sobre el partido')
@@ -53,6 +68,7 @@ class GameResource extends Resource
                             ->label('Equipo 1')
                             ->searchable()
                             ->required()
+                            ->disabled(!in_array('team1_id', $editable))
                             ->preload()
                             ->placeholder('Seleccione'),
                         Forms\Components\Select::make('team2_id')
@@ -60,6 +76,7 @@ class GameResource extends Resource
                             ->label('Equipo 2')
                             ->searchable()
                             ->required()
+                            ->disabled(!in_array('team2_id', $editable))
                             ->preload()
                             ->placeholder('Seleccione'),
 
