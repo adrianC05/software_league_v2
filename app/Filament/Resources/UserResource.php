@@ -41,6 +41,14 @@ class UserResource extends Resource
                     ->password()
                     ->required()
                     ->maxLength(255),
+                // Role
+                Forms\Components\Select::make('roles')
+                    ->label('Roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->required()
+                    ->preload()
+                    ->placeholder('Seleccione uno o más roles'),
             ])->columns(3);
     }
 
@@ -57,6 +65,7 @@ class UserResource extends Resource
                 /* Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(), */
+                Tables\Columns\TextColumn::make('roles.name'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Fecha de creación')
                     ->dateTime()

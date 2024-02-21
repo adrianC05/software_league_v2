@@ -98,6 +98,14 @@ class GameResource extends Resource
 
     public static function table(Table $table): Table
     {
+        $bulkActions = [];
+
+        if (auth()->user()->roles->contains('name', 'Admin')) {
+            $bulkActions[] = Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]);
+        }
+
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('round.name')
@@ -140,11 +148,7 @@ class GameResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->bulkActions($bulkActions);
     }
 
     public static function getRelations(): array

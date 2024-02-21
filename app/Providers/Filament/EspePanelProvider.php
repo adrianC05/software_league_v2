@@ -18,6 +18,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 
 class EspePanelProvider extends PanelProvider
 {
@@ -85,6 +86,7 @@ class EspePanelProvider extends PanelProvider
             ->plugin(
                 \Hasnayeen\Themes\ThemesPlugin::make()
             )
+            //->plugin(FilamentSpatieRolesPermissionsPlugin::make())
 
             ->authMiddleware([
                 Authenticate::class,

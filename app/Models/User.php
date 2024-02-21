@@ -10,10 +10,10 @@ use Laravel\Sanctum\HasApiTokens;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Illuminate\Support\Facades\Storage;
 use Filament\Models\Contracts\HasAvatar;
-
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
