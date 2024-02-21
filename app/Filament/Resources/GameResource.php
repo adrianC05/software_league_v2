@@ -70,6 +70,7 @@ class GameResource extends Resource
                             ->label('Goles del equipo 2')
                             ->numeric(),
                     ])->columns(4),
+                // Goleadores del partido
                 Forms\Components\Repeater::make('goalScorers')
                     ->relationship()
                     ->label('Goleadores del partido')
@@ -94,6 +95,35 @@ class GameResource extends Resource
                             ->required(),
                         //
                     ])->grid(3),
+                // Sanciones de jugadores
+                Forms\Components\Repeater::make('playerSanctions')
+                    ->relationship()
+                    ->label('Sanciones de jugadores')
+                    ->columnSpan('full')
+                    ->schema([
+                        Forms\Components\Select::make('player_id')
+                            ->relationship('player', 'name')
+                            ->label('Jugador')
+                            ->searchable()
+                            ->options(
+                                \App\Models\Player::all()->mapWithKeys(function ($player) {
+                                    return [$player->id => $player->name . ' - ' . $player->team->name];
+                                })
+                            )
+                            ->preload()
+                            ->placeholder('Seleccione un jugador'),
+                        Forms\Components\Select::make('type_sanction_id')
+                            ->relationship('typeSanction', 'name')
+                            ->label('Tipo de sanción')
+                            ->searchable()
+                            ->preload()
+                            ->placeholder('Seleccione el jugador sancionado'),
+                        Forms\Components\Toggle::make('status')
+                            ->label('Estado'),
+                        Forms\Components\DatePicker::make('date')
+                            ->label('Fecha')
+
+                    ])->grid(3),
             ]);
     }
 
@@ -104,6 +134,7 @@ class GameResource extends Resource
         if (auth()->user()->roles->contains('name', 'Admin')) {
             $bulkActions[] = Tables\Actions\BulkActionGroup::make([
                 Tables\Actions\DeleteBulkAction::make(),
+                ExportBulkAction::make(),
 
 
             ]);

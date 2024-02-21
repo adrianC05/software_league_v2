@@ -23,4 +23,10 @@ class PlayerSanction extends Model
     {
         return $this->belongsTo(Player::class);
     }
+
+    // A game can have many player sanctions
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }

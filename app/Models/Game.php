@@ -28,11 +28,15 @@ class Game extends Model
     {
         return $this->hasMany(GoalScorer::class);
     }
-    
+
 
     public function player()
     {
         return $this->belongsTo(Player::class);
     }
 
+    // One game has many player sanctions
+    public function playerSanctions(){
+        return $this->hasMany(PlayerSanction::class);
+    }
 }
