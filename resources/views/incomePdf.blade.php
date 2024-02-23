@@ -45,6 +45,7 @@
         <hr>
 
         <h3 class="text-center">{{ $titleRevenue }}</h3>
+        <br>
 
         <table class="table table-bordered">
             <thead>
@@ -65,8 +66,9 @@
             </tbody>
         </table>
 
+        <br>
         <h3 class="text-center">{{ $titleExpense }}</h3>
-
+        <br>
 
         <table class="table table-bordered">
             <thead>
