@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
+use Filament\Navigation\NavigationItem;
 
 class EspePanelProvider extends PanelProvider
 {
@@ -44,7 +45,35 @@ class EspePanelProvider extends PanelProvider
                 'Estadísticas',
                 'Usuarios',
                 'Configuración',
+                'Reportes',
             ])
+            ->navigationItems([
+                // Rerporte de Balance General
+                NavigationItem::make('Balance de ingresos')
+                    ->group('Reportes')
+                    ->URL('/generate-income-pdf')
+                    ->openUrlInNewTab()
+                    ->sort(2),
+                // Reporte de Equipos
+                NavigationItem::make('Equipos')
+                    ->group('Reportes')
+                    ->URL('/generate-teams-pdf')
+                    ->openUrlInNewTab()
+                    ->sort(1),
+                // Reporte de Jugadores
+                NavigationItem::make('Jugadores')
+                    ->group('Reportes')
+                    ->URL('/generate-players-pdf')
+                    ->openUrlInNewTab()
+                    ->sort(3),
+                // Reporte de Tabla de posiciones
+                NavigationItem::make('Tabla de posiciones')
+                    ->group('Reportes')
+                    ->URL('/generate-positions-pdf')
+                    ->openUrlInNewTab()
+                    ->sort(4),
+            ])
+
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

@@ -56,10 +56,10 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Enrollment</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Description</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Matricula</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Descripción</th>
                 </tr>
             </thead>
             <tbody>

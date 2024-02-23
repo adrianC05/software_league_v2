@@ -66,15 +66,20 @@ class PDFController extends Controller
     public function generateIncomePDF()
     {
         $revenues = Revenue::get();
+        $expenses = Expense::get();
         $data = [
-            'title' => 'Ingresos',
+            'titleRevenue' => 'Ingresos',
+            'titleExpense' => 'Gastos',
             'date' => date('m/d/Y'),
             // Total de ingresos
             'totalRevenues' => Revenue::sum('value'),
+            // Total de gastos
+            'totalExpenses' => Expense::sum('value'),
             // Balance de ingresos y gastos
             'balance' => Revenue::sum('value') - Expense::sum('value'),
             // Ingresos
             'revenues' => $revenues,
+            'expenses' => $expenses,
         ];
         $pdf = Pdf::loadView('incomePdf', $data);
         return $pdf->stream('invoice.pdf');

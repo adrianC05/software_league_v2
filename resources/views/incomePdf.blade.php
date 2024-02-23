@@ -20,8 +20,9 @@
         .img-espe {
             width: 100px;
         }
-        h1 {
-            font-size: 40px;
+
+        h3 {
+            font-size: 30px;
             font-weight: bold;
         }
     </style>
@@ -43,13 +44,8 @@
         <br>
         <hr>
 
-        <h1 class="text-center">{{ $title }}</h1>
-        <!-- Total de jugadores -->
-        <br>
-        <p class="">Total de ingresos: ${{ $totalRevenues }}</p>
-        <!-- Balance -->
-        <p class="">Balance: ${{ $balance }}</p>
-        <br>
+        <h3 class="text-center">{{ $titleRevenue }}</h3>
+
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -68,6 +64,36 @@
                 @endforeach
             </tbody>
         </table>
+
+        <h3 class="text-center">{{ $titleExpense }}</h3>
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($expenses as $expense)
+                    <tr>
+                        <td>{{ $expense->description }}</td>
+                        <td>$ {{ $expense->value }}</td>
+                        <td>{{ $expense->date }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <!-- Total de gastos e ingresos -->
+        <br>
+
+        <p class="">Total de ingresos: ${{ $totalRevenues }}</p>
+        <p class="">Total de gastos: ${{ $totalExpenses }}</p>
+        <!-- Balance -->
+        <p class="">Balance: ${{ $balance }}</p>
     </div>
 
     <footer class="fixed-bottom">
