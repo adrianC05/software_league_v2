@@ -12,5 +12,9 @@
         "postcss": "^8.4.33",
         "tailwindcss": "^3.4.1",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "fontforge": "^0.0.4",
+        "woff2": "^1.0.0"
     }
 }

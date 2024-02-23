@@ -72,7 +72,12 @@ class RevenueResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                    ExportBulkAction::make(),
+                    //ExportBulkAction::make(),
+                    Tables\Actions\BulkAction::make('export')
+                        ->label('Exportar PDF')
+                        ->icon('heroicon-o-arrow-down-on-square')
+                        ->url(fn (Revenue $record) => route('generateIncomePDF', $record->id))
+                        ->openUrlInNewTab(),
                 ]),
             ]);
     }

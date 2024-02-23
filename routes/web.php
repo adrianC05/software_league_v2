@@ -27,3 +27,18 @@ Route::get('/descargar1-pdf', function () {
 });
 
 Route::get('/', [Controller::class, 'versus']);
+
+// Descargar PDF de equipos
+Route::get('generate-teams-pdf', [App\Http\Controllers\PDFController::class, 'generateTeamsPDF'])->name('generatePDF');
+
+// Descargar PDF de jugadores
+Route::get('generate-players-pdf', [App\Http\Controllers\PDFController::class, 'generatePlayersPDF'])->name('generatePlayersPDF');
+
+// Descargar PDF de tabla de posiciones
+Route::get('generate-positions-pdf', [App\Http\Controllers\PDFController::class, 'generatePositionsPDF'])->name('generatePositionsPDF');
+
+// Descargar PDF de ingresos
+Route::get('generate-income-pdf', [App\Http\Controllers\PDFController::class, 'generateIncomePDF'])->name('generateIncomePDF');
+
+// Descargar PDF de gastos
+Route::get('generate-expenses-pdf', [App\Http\Controllers\PDFController::class, 'generateExpensesPDF'])->name('generateExpensesPDF');

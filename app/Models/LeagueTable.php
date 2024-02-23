@@ -23,5 +23,8 @@ class LeagueTable extends Model
         return $this->hasMany(Game::class, 'team_id')->latest('date')->limit(3);
     }
 
-
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }
